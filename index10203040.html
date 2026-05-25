@@ -1233,20 +1233,32 @@
         setTimeout(function() { map && map.invalidateSize(); }, 200);
     }
 
-    // ==================== CALCULAR PRÉVIA ====================
-    async function getOsrmDistance(originCoords, destCoords) {
-        try {
-            const url = 'https://router.project-osrm.org/route/v1/driving/'
-                + originCoords.lng + ',' + originCoords.lat + ';'
-                + destCoords.lng + ',' + destCoords.lat + '?overview=false';
-            const resp = await fetch(url);
-            if (resp.ok) {
-                const data = await resp.json();
-                if (data && data.routes && data.routes.length > 0) return data.routes[0].distance / 1000;
-            }
-        } catch(e) {}
-        return null;
+   async function getOsrmDistance(originCoords, destCoords) {
+    if (!originCoords || !destCoords) return null;
+
+    try {
+        // Adicionamos um timeout ou verificamos se a conexão é estável, 
+        // mas o uso básico abaixo é o padrão:
+        const url = `https://router.project-osrm.org/route/v1/driving/${originCoords.lng},${originCoords.lat};${destCoords.lng},${destCoords.lat}?overview=false`;
+        
+        const resp = await fetch(url);
+        
+        if (!resp.ok) throw new Error('Falha na API OSRM');
+
+        const data = await resp.json();
+        
+        // Validação extra: garantir que existe um caminho (route) válido
+        if (data && data.routes && data.routes.length > 0 && data.routes[0].distance !== undefined) {
+            return data.routes[0].distance / 1000; // Converte metros para KM
+        }
+    } catch (e) {
+        console.error("Erro ao calcular distância via OSRM:", e);
     }
+    
+    // Retorna null caso ocorra erro, permitindo que seu código principal 
+    // caia no "fallback" (cálculo pela fórmula de Haversine)
+    return null;
+}
 
     async function calcPreview() {
         const pickup = document.getElementById('pickup').value.trim();
