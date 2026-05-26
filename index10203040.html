@@ -149,7 +149,7 @@
         .btn-foto-upload { background: linear-gradient(45deg, #EE0000, #BB0000) !important; color: white !important; font-weight: bold; font-size: 20px; letter-spacing: 2px; box-shadow: 0 0 12px rgba(220,0,0,0.5); }
         .file-input-hidden { display: none !important; }
 
-        #ratingScreen { display: none; background: #000; padding: 10px; }
+     #ratingScreen { display: none; background: #000; padding: 10px; }
         .rating-title { font-size: 26px; font-weight: bold; text-align: center; color: white; margin: 20px 0 10px; }
         .rating-sub { color: #aaa; text-align: center; font-size: 16px; margin-bottom: 20px; }
         .stars-container { display: flex; justify-content: center; gap: 14px; margin: 20px 0; }
@@ -159,10 +159,10 @@
 
         .trip-history-section { margin-top: 20px; }
         .trip-history-title { font-size: 20px; font-weight: bold; color: white; margin-bottom: 10px; }
-        .trip-summary-card { background: #001a4d; border: 2px solid #003080; border-radius: 16px; padding: 22px 18px; margin-bottom: 14px; display: flex; justify-content: space-around; align-items: center; }
+        .trip-summary-card { background: #001a4d; border: 2px solid #003080; border-radius: 16px; padding: 22px 10px; margin-bottom: 14px; display: flex; justify-content: space-around; align-items: center; flex-wrap: wrap; gap: 8px; }
         .trip-summary-block { text-align: center; }
-        .trip-summary-label { color: #ffffff; font-size: 15px; font-weight: 800; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1.5px; }
-        .trip-summary-value { color: #ffffff; font-size: 40px; font-weight: 900; }
+        .trip-summary-label { color: #ffffff; font-size: 13px; font-weight: 800; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1.2px; }
+        .trip-summary-value { color: #ffffff; font-size: 36px; font-weight: 900; }
         .trip-summary-divider { width: 2px; height: 70px; background: rgba(255,255,255,0.2); border-radius: 2px; }
         .trip-history-item { background: #1a1a1a; border: 1px solid #333; border-radius: 12px; padding: 14px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; }
         .trip-history-info { color: white; font-size: 16px; }
@@ -171,7 +171,7 @@
 
         .btn-complete-ride { background: linear-gradient(45deg, #0055EE, #003AAA) !important; margin-top: 20px; }
         .btn-calc { background: linear-gradient(45deg, #6A1B9A, #4A148C) !important; }
-        .btn-gps { background: linear-gradient(45deg, #FF9800, #F57C00) !important; font-size: 22px; }
+        .btn-gps { background: linear-gradient(45deg, #FF9800, #F57C00) !important; font-size: 18px; }
         .btn-save-passenger { background: linear-gradient(45deg, #0055EE, #003AAA) !important; margin-bottom: 10px; }
         .btn-save-driver { background: linear-gradient(45deg, #0055EE, #003AAA) !important; }
         .btn-edit-driver { background: #555 !important; margin-top: 10px; }
@@ -184,59 +184,55 @@
         .driver-live-marker { width: 44px; height: 44px; border-radius: 50%; background: #0055EE; display: flex; align-items: center; justify-content: center; font-size: 22px; border: 3px solid white; box-shadow: 0 2px 10px rgba(0,0,0,0.6); animation: driverPulse 2s ease-in-out infinite; }
         @keyframes driverPulse { 0%,100%{box-shadow:0 0 0 0 rgba(0,85,238,0.5);} 50%{box-shadow:0 0 0 10px rgba(0,85,238,0);} }
 
-        #installBar {
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: linear-gradient(135deg, #B8860B, #DAA520, #FFD700, #DAA520, #B8860B);
-            background-size: 200% 200%;
-            animation: goldShimmer 3s ease infinite;
-            color: #000;
-            padding: 14px 28px;
-            border-radius: 30px;
-            font-size: 15px;
-            font-weight: bold;
-            cursor: pointer;
-            z-index: 99999;
-            box-shadow: 0 4px 20px rgba(218,165,32,0.7);
+        /* MAPA TELA CHEIA */
+        #map.fullscreen {
+            position: fixed !important;
+            top: 0 !important; left: 0 !important;
+            width: 100vw !important; height: 100vh !important;
+            z-index: 9999 !important; border-radius: 0 !important;
+        }
+        #mapCloseBtn {
+            display: none; position: fixed; top: 16px; right: 16px;
+            z-index: 10001; background: rgba(0,0,0,0.75); color: white;
+            border: 2px solid white; border-radius: 50%; width: 48px; height: 48px;
+            font-size: 22px; cursor: pointer; align-items: center; justify-content: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+        #mapNavBtn {
+            display: none; position: fixed; bottom: 30px; left: 50%;
+            transform: translateX(-50%); z-index: 10001;
+            background: linear-gradient(45deg, #0055EE, #003AAA);
+            color: white; border: none; border-radius: 30px;
+            padding: 16px 32px; font-size: 18px; font-weight: bold;
+            cursor: pointer; box-shadow: 0 4px 20px rgba(0,85,238,0.6);
             white-space: nowrap;
-            display: none;
-            align-items: center;
-            gap: 8px;
-            border: none;
-            letter-spacing: 0.5px;
-            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        #installBar {
+            position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+            background: linear-gradient(135deg, #B8860B, #DAA520, #FFD700, #DAA520, #B8860B);
+            background-size: 200% 200%; animation: goldShimmer 3s ease infinite;
+            color: #000; padding: 14px 28px; border-radius: 30px; font-size: 15px;
+            font-weight: bold; cursor: pointer; z-index: 99999;
+            box-shadow: 0 4px 20px rgba(218,165,32,0.7); white-space: nowrap;
+            display: none; align-items: center; gap: 8px; border: none;
+            letter-spacing: 0.5px; transition: opacity 0.5s ease, transform 0.5s ease;
         }
         #installBar.visible { display: flex; }
         #installBar.hide { opacity: 0; transform: translateX(-50%) translateY(60px); pointer-events: none; }
         @keyframes goldShimmer { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
 
         #iosBanner {
-            display: none;
-            position: fixed;
-            bottom: 0; left: 0; right: 0;
-            background: linear-gradient(135deg, #B8860B, #DAA520);
-            color: #000;
-            padding: 16px 20px;
-            font-size: 14px;
-            font-weight: bold;
-            z-index: 99999;
-            text-align: center;
-            border-top: 2px solid #FFD700;
+            display: none; position: fixed; bottom: 0; left: 0; right: 0;
+            background: linear-gradient(135deg, #B8860B, #DAA520); color: #000;
+            padding: 16px 20px; font-size: 14px; font-weight: bold;
+            z-index: 99999; text-align: center; border-top: 2px solid #FFD700;
         }
         #iosBanner.visible { display: block; }
         #iosBannerClose { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); font-size: 20px; cursor: pointer; background: none; border: none; color: #000; padding: 0; width: auto; margin: 0; }
 
-        /* ===== PWA STANDALONE — tela cheia correta ===== */
         @media all and (display-mode: standalone) {
-            html, body {
-                width: 100%;
-                min-height: 100vh;
-                min-height: 100dvh;
-                overflow-x: hidden;
-                font-size: 18px;
-            }
+            html, body { width: 100%; min-height: 100vh; min-height: 100dvh; overflow-x: hidden; font-size: 18px; }
         }
     </style>
 </head>
@@ -460,10 +456,10 @@
                 <button onclick="playSuccess(); completeRide()" class="btn-complete-ride">FINALIZAR CORRIDA</button>
             </div>
 
-            <button onclick="playClick(); toggleRoute()" id="gpsBtn" class="btn-gps">ROTA NO MAPA</button>
+            <button onclick="playClick(); toggleRoute()" id="gpsBtn" class="btn-gps">🗺️ MAPA / GPS</button>
 
             <div class="trip-history-section">
-                <div class="trip-history-title">Minhas Viagens</div>
+                <div class="trip-history-title">Minhas Viagens de Hoje</div>
                 <div class="trip-summary-card" id="tripSummaryCard">
                     <div class="trip-summary-block">
                         <div class="trip-summary-label">Corridas</div>
@@ -472,7 +468,12 @@
                     <div class="trip-summary-divider"></div>
                     <div class="trip-summary-block">
                         <div class="trip-summary-label">Estrelas</div>
-                        <div id="tripTotalStars" style="font-size:40px;font-weight:900;color:white;">0 ⭐</div>
+                        <div id="tripTotalStars" style="font-size:36px;font-weight:900;color:white;">0 ⭐</div>
+                    </div>
+                    <div class="trip-summary-divider"></div>
+                    <div class="trip-summary-block">
+                        <div class="trip-summary-label">Ganhos Hoje</div>
+                        <div class="trip-summary-value" id="tripDailyEarnings" style="font-size:26px; color:#00ff88;">R$0</div>
                     </div>
                 </div>
                 <div id="tripHistoryList">
@@ -483,6 +484,10 @@
     </div>
 
     <div id="map"></div>
+
+    <!-- Botões do mapa tela cheia -->
+    <button id="mapCloseBtn" onclick="closeFullScreenMap()">✕</button>
+    <button id="mapNavBtn" onclick="openGoogleMapsNav()">🗺️ Navegar no Google Maps</button>
 
     <button id="installBar" onclick="triggerInstall()">
         🚖 Instalar Chofer
@@ -537,7 +542,116 @@
         } catch(e) {}
     }
 
-// ==================== FIREBASE ====================
+    // ==================== SOM DE ALERTA NOVA CORRIDA ====================
+    let rideAlertInterval = null;
+    function playAlertBeep() {
+        try {
+            const ctx = getAudioCtx();
+            [900, 1100, 900, 1100].forEach((freq, i) => {
+                const osc = ctx.createOscillator(); const gain = ctx.createGain();
+                osc.connect(gain); gain.connect(ctx.destination);
+                osc.type = 'square';
+                const t = ctx.currentTime + i * 0.18;
+                osc.frequency.setValueAtTime(freq, t);
+                gain.gain.setValueAtTime(0.35, t);
+                gain.gain.exponentialRampToValueAtTime(0.001, t + 0.14);
+                osc.start(t); osc.stop(t + 0.14);
+            });
+        } catch(e) {}
+    }
+    function playRideAlert() {
+        if (rideAlertInterval) return;
+        playAlertBeep();
+        rideAlertInterval = setInterval(playAlertBeep, 4000);
+        // Notificação do navegador
+        if ('Notification' in window && Notification.permission === 'granted') {
+            new Notification('🚗 Nova corrida disponível!', {
+                body: 'Toque para ver a corrida.',
+                icon: '/favicon.ico'
+            });
+        }
+        // Vibração (mobile)
+        if (navigator.vibrate) navigator.vibrate([300, 100, 300, 100, 300]);
+    }
+    function stopRideAlert() {
+        if (rideAlertInterval) { clearInterval(rideAlertInterval); rideAlertInterval = null; }
+    }
+
+    // ==================== VOZ GPS ====================
+    function speakText(text) {
+        if (!window.speechSynthesis) return;
+        speechSynthesis.cancel();
+        const utt = new SpeechSynthesisUtterance(text);
+        utt.lang = 'pt-BR';
+        utt.rate = 0.9;
+        utt.volume = 1;
+        speechSynthesis.speak(utt);
+    }
+
+    // ==================== MAPA TELA CHEIA ====================
+    function openFullScreenMap() {
+        const mapEl = document.getElementById('map');
+        if (!mapEl) return;
+        mapEl.classList.add('fullscreen');
+        document.getElementById('mapCloseBtn').style.display = 'flex';
+        document.getElementById('mapNavBtn').style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+        setTimeout(function() { map && map.invalidateSize(); }, 300);
+        // Mostrar rota se tiver corrida ativa
+        if (currentRide && currentRide.pickupLat && !routeVisible) {
+            showRouteOnMap(
+                { lat: currentRide.pickupLat, lng: currentRide.pickupLng },
+                { lat: currentRide.destLat, lng: currentRide.destLng }
+            );
+        }
+    }
+    function closeFullScreenMap() {
+        const mapEl = document.getElementById('map');
+        if (!mapEl) return;
+        mapEl.classList.remove('fullscreen');
+        document.getElementById('mapCloseBtn').style.display = 'none';
+        document.getElementById('mapNavBtn').style.display = 'none';
+        document.body.style.overflow = '';
+        setTimeout(function() { map && map.invalidateSize(); }, 300);
+    }
+    function openGoogleMapsNav() {
+        if (!currentRide) return;
+        // Navega até o ponto de retirada primeiro
+        const destLat = currentRide.pickupLat || currentRide.destLat;
+        const destLng = currentRide.pickupLng || currentRide.destLng;
+        const address = encodeURIComponent(currentRide.pickup || currentRide.destination || '');
+        const url = destLat
+            ? `https://www.google.com/maps/dir/?api=1&destination=${destLat},${destLng}&travelmode=driving`
+            : `https://www.google.com/maps/dir/?api=1&destination=${address}&travelmode=driving`;
+        window.open(url, '_blank');
+    }
+
+    // ==================== STATS DIÁRIOS ====================
+    function getTodayDateStr() {
+        const d = new Date();
+        return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+    }
+    function checkDailyReset() {
+        if (!currentDriver || !currentDriver.deviceId || !db) return;
+        const today = getTodayDateStr();
+        db.ref('drivers/' + currentDriver.deviceId).once('value').then(function(snap) {
+            const data = snap.val() || {};
+            if (data.dailyDate && data.dailyDate !== today) {
+                // Novo dia — zera estatísticas diárias
+                db.ref('drivers/' + currentDriver.deviceId).update({
+                    dailyDate: today,
+                    dailyRides: 0,
+                    dailyStars: 0,
+                    dailyEarnings: 0
+                });
+                showToast('📅 Novo dia! Estatísticas zeradas.');
+            } else if (!data.dailyDate) {
+                db.ref('drivers/' + currentDriver.deviceId).update({ dailyDate: today });
+            }
+        });
+    }
+
+    // ==================== FIREBASE ====================
     const firebaseConfig = {
         apiKey: "AIzaSyCXTQ932v0Amnbtha01BzFsUfUZKnwYQIA",
         authDomain: "chofer-522be.firebaseapp.com",
@@ -571,6 +685,7 @@
     let passengerLng = null;
     let rideAcceptedShown = false;
     let currentRideId = null;
+    let previousRideCount = 0;
     const DRIVER_KEY = 'chofer_driver_v4';
     const PASSENGER_KEY = 'chofer_passenger_v2';
     const ADDRESS_HISTORY_KEY = 'chofer_address_history_v1';
@@ -636,11 +751,21 @@
         syncDriverFromFirebase();
         initPWA();
 
+        // Pede permissão de notificação
+        if ('Notification' in window && Notification.permission === 'default') {
+            Notification.requestPermission();
+        }
+
         document.addEventListener('click', function(e) {
             if (!e.target.closest('#pickup') && !e.target.closest('#pickupSuggestions'))
                 document.getElementById('pickupSuggestions').innerHTML = '';
             if (!e.target.closest('#destination') && !e.target.closest('#destinationSuggestions'))
                 document.getElementById('destinationSuggestions').innerHTML = '';
+        });
+
+        // Fechar mapa com tecla ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeFullScreenMap();
         });
     }
 
@@ -708,14 +833,12 @@
         bar.classList.add('visible');
         bar.onclick = triggerInstall;
     }
-
     function hideInstallBar() {
         const bar = document.getElementById('installBar');
         if (!bar) return;
         bar.classList.add('hide');
         setTimeout(function() { bar.classList.remove('visible', 'hide'); }, 500);
     }
-
     function triggerInstall() {
         if (deferredPrompt) {
             deferredPrompt.prompt();
@@ -727,7 +850,6 @@
             showToast('Menu ⋮ do Chrome → "Adicionar à tela inicial"');
         }
     }
-
     function closeIosBanner() {
         document.getElementById('iosBanner').classList.remove('visible');
         persistSave('chofer_ios_banner_dismissed', '1');
@@ -736,15 +858,8 @@
     // ==================== GPS REAL DO MOTORISTA ====================
     function startDriverGPS() {
         if (!currentDriver || !db) return;
-        if (gpsWatchId !== null) {
-            navigator.geolocation.clearWatch(gpsWatchId);
-            gpsWatchId = null;
-        }
-        if (!navigator.geolocation) {
-            updateGpsStatusBadge(false);
-            showToast('GPS não disponível neste dispositivo');
-            return;
-        }
+        if (gpsWatchId !== null) { navigator.geolocation.clearWatch(gpsWatchId); gpsWatchId = null; }
+        if (!navigator.geolocation) { updateGpsStatusBadge(false); showToast('GPS não disponível neste dispositivo'); return; }
         updateGpsStatusBadge(false);
         gpsWatchId = navigator.geolocation.watchPosition(
             function(position) {
@@ -771,7 +886,9 @@
                         distToDestKm: distToFinal.toFixed(3)
                     });
                     showDistToDestDriver(distToFinal);
-                    if (distToFinal < 0.08) checkAutoComplete();
+                    // Voz GPS: avisa quando próximo
+                    if (distToPickup < 0.1) speakText('Chegando ao passageiro!');
+                    else if (distToFinal < 0.08) checkAutoComplete();
                 }
             },
             function(error) {
@@ -785,15 +902,10 @@
             { enableHighAccuracy: true, timeout: 15000, maximumAge: 3000 }
         );
     }
-
     function stopDriverGPS() {
-        if (gpsWatchId !== null) {
-            navigator.geolocation.clearWatch(gpsWatchId);
-            gpsWatchId = null;
-        }
+        if (gpsWatchId !== null) { navigator.geolocation.clearWatch(gpsWatchId); gpsWatchId = null; }
         updateGpsStatusBadge(false);
     }
-
     function updateGpsStatusBadge(active, accuracy) {
         const badge = document.getElementById('gpsStatusBadge');
         if (!badge) return;
@@ -806,28 +918,20 @@
             badge.textContent = '📡 GPS: aguardando...';
         }
     }
-
     function showDistToDestDriver(distKm) {
         const el = document.getElementById('distToDestDisplay');
         const txt = document.getElementById('distToDestText');
         if (!el || !txt) return;
         el.style.display = 'block';
-        if (distKm < 0.1) {
-            txt.textContent = 'Chegando ao destino! 🎯';
-            txt.style.color = '#00ff88';
-        } else if (distKm < 1) {
-            txt.textContent = Math.round(distKm * 1000) + ' metros';
-            txt.style.color = '#FFD600';
-        } else {
-            txt.textContent = distKm.toFixed(1) + ' km';
-            txt.style.color = 'white';
-        }
+        if (distKm < 0.1) { txt.textContent = 'Chegando ao destino! 🎯'; txt.style.color = '#00ff88'; }
+        else if (distKm < 1) { txt.textContent = Math.round(distKm * 1000) + ' metros'; txt.style.color = '#FFD600'; }
+        else { txt.textContent = distKm.toFixed(1) + ' km'; txt.style.color = 'white'; }
     }
-
     let autoCompleteShown = false;
     function checkAutoComplete() {
         if (autoCompleteShown) return;
         autoCompleteShown = true;
+        speakText('Chegando ao destino!');
         setTimeout(function() {
             if (currentRide && currentRide.status === 'accepted') {
                 const confirmar = confirm('🎯 Você chegou ao destino!\nDeseja finalizar a corrida agora?');
@@ -859,15 +963,10 @@
             }
         });
     }
-
     function stopWatchingDriverPosition(rideId) {
         if (db && rideId) db.ref('rides/' + rideId).off();
-        if (activeDriverMarker && map) {
-            map.removeLayer(activeDriverMarker);
-            activeDriverMarker = null;
-        }
+        if (activeDriverMarker && map) { map.removeLayer(activeDriverMarker); activeDriverMarker = null; }
     }
-
     function updateActiveDriverOnMap(driverLat, driverLng, driverName) {
         if (!map) return;
         const icon = L.divIcon({
@@ -890,7 +989,6 @@
             map.panTo([driverLat, driverLng]);
         }
     }
-
     function animateMarker(marker, from, to) {
         const frames = 20;
         const dLat = (to.lat - from.lat) / frames;
@@ -902,7 +1000,6 @@
             if (frame >= frames) clearInterval(interval);
         }, 50);
     }
-
     function updatePassengerETA(minutes, distKm) {
         const etaEl = document.getElementById('etaTime');
         const badge = document.getElementById('etaBadge');
@@ -939,7 +1036,6 @@
             showToast('Dados salvos com sucesso!');
         } catch(e) { playError(); showPassengerSaveStatus('Erro ao salvar: ' + e.message, 'error'); }
     }
-
     function loadPassengerData() {
         try {
             const raw = persistLoad(PASSENGER_KEY);
@@ -957,7 +1053,6 @@
             showPassengerSavedBlock(data);
         } catch(e) {}
     }
-
     function showPassengerSavedBlock(data) {
         document.getElementById('passengerFormBlock').style.display = 'none';
         document.getElementById('passengerSavedBlock').style.display = 'block';
@@ -970,7 +1065,6 @@
             document.getElementById('passengerSavedPhotoDisplay').style.display = 'none';
         }
     }
-
     function editPassenger() {
         document.getElementById('passengerFormBlock').style.display = 'block';
         document.getElementById('passengerSavedBlock').style.display = 'none';
@@ -985,7 +1079,6 @@
             }
         }
     }
-
     function showPassengerSaveStatus(msg, type) {
         const el = document.getElementById('passengerSaveStatus');
         el.textContent = msg; el.className = 'status ' + type; el.style.display = 'block';
@@ -1120,7 +1213,6 @@
         map = L.map('map', { center: [-22.9068, -43.1729], zoom: 13 });
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: 'OpenStreetMap', maxZoom: 19 }).addTo(map);
     }
-
     function startAnimatedCars() {
         const carData = [
             { id: 'sim1', lat: -22.9068, lng: -43.1729, type: '🚗', dlat: 0.0002, dlng: 0.0003 },
@@ -1155,7 +1247,6 @@
             db.ref('drivers').on('value', snap => { updateRealDriverMarkers(snap.val()); });
         }
     }
-
     function updateRealDriverMarkers(driversData) {
         if (!driversData) return;
         Object.entries(driversData).forEach(([id, driver]) => {
@@ -1233,32 +1324,19 @@
         setTimeout(function() { map && map.invalidateSize(); }, 200);
     }
 
-   async function getOsrmDistance(originCoords, destCoords) {
-    if (!originCoords || !destCoords) return null;
-
-    try {
-        // Adicionamos um timeout ou verificamos se a conexão é estável, 
-        // mas o uso básico abaixo é o padrão:
-        const url = `https://router.project-osrm.org/route/v1/driving/${originCoords.lng},${originCoords.lat};${destCoords.lng},${destCoords.lat}?overview=false`;
-        
-        const resp = await fetch(url);
-        
-        if (!resp.ok) throw new Error('Falha na API OSRM');
-
-        const data = await resp.json();
-        
-        // Validação extra: garantir que existe um caminho (route) válido
-        if (data && data.routes && data.routes.length > 0 && data.routes[0].distance !== undefined) {
-            return data.routes[0].distance / 1000; // Converte metros para KM
-        }
-    } catch (e) {
-        console.error("Erro ao calcular distância via OSRM:", e);
+    async function getOsrmDistance(originCoords, destCoords) {
+        if (!originCoords || !destCoords) return null;
+        try {
+            const url = `https://router.project-osrm.org/route/v1/driving/${originCoords.lng},${originCoords.lat};${destCoords.lng},${destCoords.lat}?overview=false`;
+            const resp = await fetch(url);
+            if (!resp.ok) throw new Error('Falha na API OSRM');
+            const data = await resp.json();
+            if (data && data.routes && data.routes.length > 0 && data.routes[0].distance !== undefined) {
+                return data.routes[0].distance / 1000;
+            }
+        } catch (e) { console.error("Erro OSRM:", e); }
+        return null;
     }
-    
-    // Retorna null caso ocorra erro, permitindo que seu código principal 
-    // caia no "fallback" (cálculo pela fórmula de Haversine)
-    return null;
-}
 
     async function calcPreview() {
         const pickup = document.getElementById('pickup').value.trim();
@@ -1309,13 +1387,28 @@
         }).addTo(map);
         routeVisible = true;
         const btn = document.getElementById('gpsBtn');
-        if (btn) btn.textContent = 'ESCONDER ROTA';
+        if (btn) btn.textContent = '🗺️ MAPA / GPS';
     }
 
+    // ==================== BOTÃO GPS / MAPA ====================
     function toggleRoute() {
+        // Se motorista tem corrida ativa → abre mapa tela cheia
+        if (currentRide && currentRide.status === 'accepted') {
+            openFullScreenMap();
+            speakText('Abrindo mapa. Endereço de retirada: ' + (currentRide.pickup || 'endereço não informado'));
+            return;
+        }
+        // Senão, alterna rota
         if (!routingControl) return;
-        if (routeVisible) { map.removeControl(routingControl); routeVisible = false; document.getElementById('gpsBtn').textContent = 'ROTA NO MAPA'; }
-        else { routingControl.addTo(map); routeVisible = true; document.getElementById('gpsBtn').textContent = 'ESCONDER ROTA'; }
+        if (routeVisible) {
+            map.removeControl(routingControl);
+            routeVisible = false;
+            document.getElementById('gpsBtn').textContent = '🗺️ MAPA / GPS';
+        } else {
+            routingControl.addTo(map);
+            routeVisible = true;
+            document.getElementById('gpsBtn').textContent = '🗺️ ESCONDER ROTA';
+        }
     }
 
     function haversineDistance(lat1, lon1, lat2, lon2) {
@@ -1348,20 +1441,16 @@
         if (!name || !phone) { playError(); alert('Salve seus dados de passageiro primeiro!'); return; }
         if (!pickup || !destination) { playError(); alert('Preencha os endereços de retirada e destino!'); return; }
         if (!previewData) { playError(); alert('Clique em "CALCULAR VALOR DA CORRIDA" antes de pedir!'); return; }
-
         const btn = document.getElementById('requestRideBtn');
         btn.disabled = true; btn.textContent = 'Enviando corrida...';
         try {
             saveAddressToHistory(pickup, pickupCoords ? pickupCoords.lat : null, pickupCoords ? pickupCoords.lng : null);
             saveAddressToHistory(destination, destinationCoords ? destinationCoords.lat : null, destinationCoords ? destinationCoords.lng : null);
-
             passengerLat = pickupCoords ? pickupCoords.lat : null;
             passengerLng = pickupCoords ? pickupCoords.lng : null;
-
             const rideId = 'ride_' + Date.now();
             currentRideId = rideId;
             rideAcceptedShown = false;
-
             const ride = {
                 id: rideId,
                 passengerName: name, passengerPhone: phone, passengerCpf: cpf,
@@ -1376,12 +1465,10 @@
                 status: 'waiting', createdAt: Date.now(),
                 etaMinutes: null, driverLat: null, driverLng: null
             };
-
             document.getElementById('waitingScreen').style.display = 'block';
             document.getElementById('ridePreview').style.display = 'none';
             btn.textContent = 'Aguardando Motorista...';
             playSuccess();
-
             if (db) {
                 await db.ref('rides/' + rideId).set(ride);
                 db.ref('rides/' + rideId).on('value', function(snapshot) {
@@ -1452,12 +1539,8 @@
         document.getElementById('driverAcceptedColor').textContent = ride.driverColor || '-';
         document.getElementById('driverAcceptedPlate').textContent = ride.driverPlate || '-';
         const photoEl = document.getElementById('driverAcceptedPhoto');
-        if (ride.driverPhoto) {
-            photoEl.src = ride.driverPhoto;
-            photoEl.style.display = 'block';
-        } else {
-            photoEl.style.display = 'none';
-        }
+        if (ride.driverPhoto) { photoEl.src = ride.driverPhoto; photoEl.style.display = 'block'; }
+        else { photoEl.style.display = 'none'; }
         const etaEl = document.getElementById('etaTime');
         if (etaEl) etaEl.textContent = 'calculando...';
         const badge = document.getElementById('etaBadge');
@@ -1474,13 +1557,11 @@
         updateStarDisplay();
         document.getElementById('ratingConfirmBtn').disabled = true;
     }
-
     function selectStar(n) {
         selectedStars = n;
         updateStarDisplay();
         document.getElementById('ratingConfirmBtn').disabled = false;
     }
-
     function updateStarDisplay() {
         for (let i = 1; i <= 3; i++) {
             const btn = document.getElementById('star' + i);
@@ -1488,7 +1569,6 @@
             else btn.classList.remove('selected');
         }
     }
-
     function submitRating() {
         if (!selectedStars) return;
         playSuccess();
@@ -1498,19 +1578,26 @@
                 passengerName: rideToRate.passengerName || 'Passageiro',
                 pickup: rideToRate.pickup || '',
                 destination: rideToRate.destination || '',
+                price: rideToRate.price || '0.00',
                 ratedAt: Date.now()
             };
             db.ref('driverRatings/' + rideToRate.driverId).push(ratingData).then(function() {
                 showToast('Avaliação enviada! Obrigado! ⭐');
-            }).catch(function() {
-                showToast('Avaliação enviada!');
-            });
+            }).catch(function() { showToast('Avaliação enviada!'); });
+
             const driverRef = db.ref('drivers/' + rideToRate.driverId);
             driverRef.once('value').then(function(snap) {
                 const driverData = snap.val() || {};
+                const today = getTodayDateStr();
+                const isToday = driverData.dailyDate === today;
                 const totalRides = (driverData.totalRides || 0) + 1;
                 const totalStars = (driverData.totalStars || 0) + selectedStars;
-                driverRef.update({ totalRides, totalStars });
+                const dailyRides = isToday ? (driverData.dailyRides || 0) + 1 : 1;
+                const dailyStars = isToday ? (driverData.dailyStars || 0) + selectedStars : selectedStars;
+                const dailyEarnings = isToday
+                    ? (driverData.dailyEarnings || 0) + parseFloat(rideToRate.price || 0)
+                    : parseFloat(rideToRate.price || 0);
+                driverRef.update({ totalRides, totalStars, dailyDate: today, dailyRides, dailyStars, dailyEarnings });
                 try {
                     const localRaw = persistLoad(DRIVER_KEY);
                     if (localRaw) {
@@ -1526,7 +1613,6 @@
         }
         resetPassengerScreen();
     }
-
     function resetPassengerScreen() {
         document.getElementById('passengerMainScreen').style.display = 'block';
         document.getElementById('rideAcceptedScreen').style.display = 'none';
@@ -1552,31 +1638,36 @@
 
     function startRatingsListener() {
         if (!currentDriver || !currentDriver.deviceId || !db) return;
-        if (ratingsListener) {
-            db.ref('driverRatings/' + currentDriver.deviceId).off('value', ratingsListener);
-            ratingsListener = null;
-        }
-        if (driverStatsListener) {
-            db.ref('drivers/' + currentDriver.deviceId).off('value', driverStatsListener);
-            driverStatsListener = null;
-        }
+        if (ratingsListener) { db.ref('driverRatings/' + currentDriver.deviceId).off('value', ratingsListener); ratingsListener = null; }
+        if (driverStatsListener) { db.ref('drivers/' + currentDriver.deviceId).off('value', driverStatsListener); driverStatsListener = null; }
         ratingsListener = db.ref('driverRatings/' + currentDriver.deviceId).on('value', function(snap) {
             drawTripHistory(snap.val());
         });
         driverStatsListener = db.ref('drivers/' + currentDriver.deviceId).on('value', function(snap) {
             const data = snap.val();
             if (!data) return;
-            updateSummaryCard(data.totalRides || 0, data.totalStars || 0);
+            const today = getTodayDateStr();
+            const isToday = data.dailyDate === today;
+            updateSummaryCard(
+                isToday ? (data.dailyRides || 0) : 0,
+                isToday ? (data.dailyStars || 0) : 0,
+                isToday ? (data.dailyEarnings || 0) : 0
+            );
         });
     }
 
-    function updateSummaryCard(totalRides, totalStars) {
+    function updateSummaryCard(dailyRides, dailyStars, dailyEarnings) {
         const card = document.getElementById('tripSummaryCard');
         if (card) card.style.display = 'flex';
         const countEl = document.getElementById('tripTotalCount');
         const starsEl = document.getElementById('tripTotalStars');
-        if (countEl) countEl.textContent = totalRides;
-        if (starsEl) starsEl.innerHTML = '<span style="color:#ffffff;font-weight:900;">' + totalStars + '</span> <span style="color:#FFD700;">⭐</span>';
+        const earningsEl = document.getElementById('tripDailyEarnings');
+        if (countEl) countEl.textContent = dailyRides || 0;
+        if (starsEl) starsEl.innerHTML = '<span style="color:#ffffff;font-weight:900;">' + (dailyStars || 0) + '</span> <span style="color:#FFD700;">⭐</span>';
+        if (earningsEl) {
+            const val = parseFloat(dailyEarnings || 0).toFixed(2).replace('.', ',');
+            earningsEl.textContent = 'R$' + val;
+        }
     }
 
     function drawTripHistory(ratings) {
@@ -1590,10 +1681,12 @@
         container.innerHTML = '';
         list.forEach(function(r, i) {
             const starsHtml = '⭐'.repeat(r.stars || 1);
+            const priceHtml = r.price ? '<div style="color:#00ff88;font-size:13px;margin-top:2px;">R$ ' + r.price + '</div>' : '';
             const div = document.createElement('div');
             div.className = 'trip-history-item';
             div.innerHTML = '<div class="trip-history-info">Corrida ' + (list.length - i)
-                + '<div class="trip-history-num">' + (r.passengerName || 'Passageiro') + '</div></div>'
+                + '<div class="trip-history-num">' + (r.passengerName || 'Passageiro') + '</div>'
+                + priceHtml + '</div>'
                 + '<div style="text-align:right;"><div class="trip-history-stars">' + starsHtml + '</div>'
                 + '<div style="color:#aaa;font-size:12px;">' + (r.stars || 1) + ' estrela' + ((r.stars || 1) > 1 ? 's' : '') + '</div></div>';
             container.appendChild(div);
@@ -1629,7 +1722,6 @@
             processDriverSave(driverData, saveBtn);
         }
     }
-
     function processDriverSave(driverData, saveBtn) {
         saveDriverDataLocal(driverData);
         currentDriver = driverData;
@@ -1638,32 +1730,25 @@
                 .then(function() {
                     showDriverStatus('SALVO COM SUCESSO!', 'success');
                     showToast('Dados salvos!');
-                    setTimeout(function() {
-                        checkDriverStatus();
-                        startDriverGPS();
-                    }, 1500);
+                    setTimeout(function() { checkDriverStatus(); startDriverGPS(); }, 1500);
                 })
                 .catch(function() {
                     showDriverStatus('SALVO NO DISPOSITIVO', 'success');
                     showToast('Salvo!');
-                    checkDriverStatus();
-                    startDriverGPS();
+                    checkDriverStatus(); startDriverGPS();
                 });
         } else {
             showDriverStatus('SALVO NO DISPOSITIVO!', 'success');
             showToast('Salvo!');
-            checkDriverStatus();
-            startDriverGPS();
+            checkDriverStatus(); startDriverGPS();
         }
     }
-
     function showDriverStatus(msg, type) {
         const el = document.getElementById('driverStatus');
         const btn = document.getElementById('saveDriverBtn');
         el.textContent = msg; el.className = 'status ' + type; el.style.display = 'block';
         btn.disabled = false; btn.textContent = 'SALVAR DADOS';
     }
-
     function checkDriverStatus() {
         if (!currentDriver) loadDriverDataLocal();
         if (!currentDriver) {
@@ -1676,12 +1761,16 @@
         document.getElementById('driverSaved').style.display = 'block';
         document.getElementById('driverPanel').style.display = 'block';
         showDriverInfo();
-        updateSummaryCard(currentDriver.totalRides || 0, currentDriver.totalStars || 0);
+        checkDailyReset();
+        updateSummaryCard(
+            currentDriver.dailyRides || 0,
+            currentDriver.dailyStars || 0,
+            currentDriver.dailyEarnings || 0
+        );
         startRatingsListener();
         startDriverGPS();
         setTimeout(loadRidesRealTime, 500);
     }
-
     function showDriverInfo() {
         document.getElementById('savedDriverName').textContent = currentDriver.name;
         document.getElementById('savedDriverPhone').textContent = currentDriver.phone;
@@ -1695,7 +1784,6 @@
             img.style.objectFit = 'cover'; img.style.border = '3px solid #0055EE';
         }
     }
-
     function editDriver() {
         stopDriverGPS();
         if (currentDriver) {
@@ -1718,7 +1806,6 @@
         document.getElementById('driverSaved').style.display = 'none';
         document.getElementById('driverPanel').style.display = 'none';
     }
-
     function previewPhoto() {
         const file = document.getElementById('driverPhotoInput').files[0];
         if (!file) return;
@@ -1731,139 +1818,66 @@
     }
 
     // ==================== BLOQUEIO EM TEMPO REAL ====================
-    // ✅ VERSÃO CORRIGIDA — ouve drivers/{deviceId} igual ao monitor
     let blockListener = null;
-
     function monitorDriverBlock() {
-
         if (!currentDriver || !currentDriver.deviceId || !db) return;
-
-        // Remove listener anterior se existir
-        if (blockListener) {
-            db.ref('drivers/' + currentDriver.deviceId).off('value', blockListener);
-            blockListener = null;
-        }
-
+        if (blockListener) { db.ref('drivers/' + currentDriver.deviceId).off('value', blockListener); blockListener = null; }
         blockListener = function(snap) {
-
             const dados = snap.val();
-
-            // Motorista EXCLUÍDO pelo monitor
             if (!dados) {
-
-                if (rideListener) {
-                    db.ref('rides').off('value', rideListener);
-                    rideListener = null;
-                }
-
+                if (rideListener) { db.ref('rides').off('value', rideListener); rideListener = null; }
                 playError();
                 localStorage.clear();
-
                 document.body.innerHTML = `
-                    <div style="
-                        background:#111;color:white;width:100%;height:100vh;
-                        display:flex;justify-content:center;align-items:center;
-                        flex-direction:column;font-family:Arial;text-align:center;padding:30px;
-                    ">
+                    <div style="background:#111;color:white;width:100%;height:100vh;display:flex;justify-content:center;align-items:center;flex-direction:column;font-family:Arial;text-align:center;padding:30px;">
                         <div style="font-size:90px;">🚫</div>
-                        <div style="font-size:34px;font-weight:bold;margin-top:20px;color:#ff4444;">
-                            CONTA REMOVIDA
-                        </div>
-                        <div style="margin-top:20px;font-size:22px;color:#ccc;">
-                            Seu cadastro foi removido pelo administrador.
-                        </div>
+                        <div style="font-size:34px;font-weight:bold;margin-top:20px;color:#ff4444;">CONTA REMOVIDA</div>
+                        <div style="margin-top:20px;font-size:22px;color:#ccc;">Seu cadastro foi removido pelo administrador.</div>
                     </div>`;
-
                 setTimeout(function() { location.reload(); }, 4000);
                 return;
             }
-
-            // Motorista BLOQUEADO pelo monitor
-            // ✅ NÃO limpa localStorage — dados ficam salvos, só para as corridas
             if (dados.bloqueado === true) {
-
-                if (rideListener) {
-                    db.ref('rides').off('value', rideListener);
-                    rideListener = null;
-                }
-
+                if (rideListener) { db.ref('rides').off('value', rideListener); rideListener = null; }
+                stopRideAlert();
                 playError();
-
                 document.body.innerHTML = `
-                    <div style="
-                        background:#111;color:white;width:100%;height:100vh;
-                        display:flex;justify-content:center;align-items:center;
-                        flex-direction:column;font-family:Arial;text-align:center;padding:30px;
-                    ">
+                    <div style="background:#111;color:white;width:100%;height:100vh;display:flex;justify-content:center;align-items:center;flex-direction:column;font-family:Arial;text-align:center;padding:30px;">
                         <div style="font-size:90px;">🔒</div>
-                        <div style="font-size:34px;font-weight:bold;margin-top:20px;color:#ff4444;">
-                            MOTORISTA BLOQUEADO
-                        </div>
-                        <div style="margin-top:20px;font-size:22px;color:#ccc;">
-                            Seu acesso foi suspenso. Entre em contato com o administrador.
-                        </div>
-                        <div style="margin-top:30px;font-size:16px;color:#888;">
-                            Seus dados estão salvos. Aguarde a liberação.
-                        </div>
+                        <div style="font-size:34px;font-weight:bold;margin-top:20px;color:#ff4444;">MOTORISTA BLOQUEADO</div>
+                        <div style="margin-top:20px;font-size:22px;color:#ccc;">Seu acesso foi suspenso. Entre em contato com o administrador.</div>
+                        <div style="margin-top:30px;font-size:16px;color:#888;">Seus dados estão salvos. Aguarde a liberação.</div>
                     </div>`;
-
                 return;
             }
-
-            // Motorista PAUSADO pelo monitor
             if (dados.pausado === true) {
-
-                if (rideListener) {
-                    db.ref('rides').off('value', rideListener);
-                    rideListener = null;
-                }
-
+                if (rideListener) { db.ref('rides').off('value', rideListener); rideListener = null; }
+                stopRideAlert();
                 const ridesList = document.getElementById('ridesList');
                 if (ridesList) {
-                    ridesList.innerHTML =
-                        '<div class="info-card" style="background:#7a4000;color:white;text-align:center;padding:20px;border-radius:12px;">'
-                        + '⏸ Você está <strong>PAUSADO</strong> pelo administrador.<br>Aguarde a liberação.'
-                        + '</div>';
+                    ridesList.innerHTML = '<div class="info-card" style="background:#7a4000;color:white;text-align:center;padding:20px;border-radius:12px;">⏸ Você está <strong>PAUSADO</strong> pelo administrador.<br>Aguarde a liberação.</div>';
                 }
-
                 const ridesCount = document.getElementById('ridesCount');
                 if (ridesCount) ridesCount.textContent = '0';
-
                 const currentPassenger = document.getElementById('currentPassenger');
                 if (currentPassenger) currentPassenger.style.display = 'none';
-
                 return;
             }
-
-            // Motorista LIBERADO — recarrega corridas se o listener estava parado
-            if (!rideListener) {
-                loadRidesRealTime();
-            }
+            if (!rideListener) loadRidesRealTime();
         };
-
         db.ref('drivers/' + currentDriver.deviceId).on('value', blockListener);
     }
 
     // ==================== MOTORISTA: CORRIDAS ====================
     function loadRidesRealTime() {
-
         if (!currentDriver || !db) return;
-
         monitorDriverBlock();
-
-        if (rideListener) {
-            db.ref('rides').off('value', rideListener);
-            rideListener = null;
-        }
-
+        if (rideListener) { db.ref('rides').off('value', rideListener); rideListener = null; }
         const callback = function(snapshot) {
-
             const ridesList = document.getElementById('ridesList');
             ridesList.innerHTML = '';
-
             let count = 0;
             let activeRideExists = false;
-
             snapshot.forEach(function(child) {
                 const ride = child.val();
                 if (ride.status === 'accepted' && ride.driverId === currentDriver.deviceId) {
@@ -1871,12 +1885,13 @@
                     displayCurrentRide(ride.id, ride);
                     autoCompleteShown = false;
                     activeRideExists = true;
+                    stopRideAlert();
                 }
             });
-
             if (activeRideExists) {
                 document.getElementById('ridesList').style.display = 'none';
                 document.getElementById('ridesCount').textContent = 1;
+                previousRideCount = 0;
                 return;
             } else {
                 currentRide = null;
@@ -1884,27 +1899,21 @@
                 document.getElementById('currentPassenger').style.display = 'none';
                 document.getElementById('ridesList').style.display = 'block';
             }
-
             const myVehicleType = currentDriver.vehicleType || 'carro';
-
             snapshot.forEach(function(child) {
                 const ride = child.val();
                 if (ride.status !== 'waiting') return;
                 const rideType = ride.vehicleType || 'carro';
                 if (rideType !== myVehicleType) return;
                 count++;
-
                 const card = document.createElement('div');
                 card.className = 'ride-card';
                 card.id = 'ride-card-' + ride.id;
-
                 const payLabel = ride.paymentMethodLabel ||
                     (ride.paymentMethod === 'dinheiro' ? 'Dinheiro' : ride.paymentMethod === 'pix' ? 'PIX' : 'Cartão');
-
                 const passengerPhotoHtml = ride.passengerPhoto
                     ? '<img src="' + ride.passengerPhoto + '" style="width:75px;height:75px;border-radius:50%;object-fit:cover;border:3px solid white;margin:0 auto 12px;display:block;" />'
                     : '';
-
                 card.innerHTML = passengerPhotoHtml
                     + '<div style="font-size:22px;font-weight:bold;margin-bottom:8px;color:white;">' + (ride.passengerName || 'Passageiro') + '</div>'
                     + '<div style="color:white;"><strong>Tel:</strong> ' + (ride.passengerPhone || '-') + '</div>'
@@ -1916,50 +1925,37 @@
                     + '<button class="btn-accept" onclick="playSuccess(); acceptRide(\'' + ride.id + '\')">ACEITAR</button>'
                     + '<button class="btn-reject" onclick="playError(); rejectRide(\'' + ride.id + '\')">REJEITAR</button>'
                     + '</div>';
-
                 ridesList.appendChild(card);
             });
-
             document.getElementById('ridesCount').textContent = count;
-
+            // ✅ Som de alerta quando aparecer nova corrida
+            if (count > 0 && count > previousRideCount) {
+                playRideAlert();
+            } else if (count === 0) {
+                stopRideAlert();
+            }
+            previousRideCount = count;
             if (count === 0 && !activeRideExists) {
                 const typeLabel = myVehicleType === 'moto' ? 'moto' : 'carro';
                 ridesList.innerHTML = '<div class="info-card" style="background:#333;color:white;">Nenhuma corrida de ' + typeLabel + ' disponível no momento.</div>';
             }
         };
-
         db.ref('rides').on('value', callback);
         rideListener = callback;
     }
 
     async function acceptRide(rideId) {
-
-        if (!currentDriver) {
-            playError();
-            alert('Cadastre-se como motorista primeiro!');
-            return;
-        }
-
-        // ✅ Verifica bloqueio no caminho correto: drivers/{id}
+        if (!currentDriver) { playError(); alert('Cadastre-se como motorista primeiro!'); return; }
         const driverSnap = await db.ref('drivers/' + currentDriver.deviceId).once('value');
         const driverData = driverSnap.val();
-
-        if (!driverData || driverData.bloqueado === true) {
-            playError();
-            alert('⛔ Sua conta está bloqueada. Não é possível aceitar corridas.');
-            return;
-        }
-
-        if (driverData.pausado === true) {
-            playError();
-            alert('⏸ Você está pausado pelo administrador. Não é possível aceitar corridas.');
-            return;
-        }
-
+        if (!driverData || driverData.bloqueado === true) { playError(); alert('⛔ Sua conta está bloqueada.'); return; }
+        if (driverData.pausado === true) { playError(); alert('⏸ Você está pausado pelo administrador.'); return; }
         const card = document.getElementById('ride-card-' + rideId);
         if (card) card.classList.add('loading');
-
         try {
+            // Busca dados da corrida para anunciar endereço por voz
+            const rideSnap = await db.ref('rides/' + rideId).once('value');
+            const rideData = rideSnap.val();
             await db.ref('rides/' + rideId).update({
                 status: 'accepted',
                 driverId: currentDriver.deviceId,
@@ -1971,11 +1967,17 @@
                 driverPhoto: currentDriver.photo || null,
                 acceptedAt: Date.now()
             });
+            stopRideAlert();
             showToast('Corrida aceita! GPS ativo 📡');
             autoCompleteShown = false;
+            // ✅ GPS Voz: anuncia o endereço de retirada
+            if (rideData && rideData.pickup) {
+                speakText('Corrida aceita! Vá buscar o passageiro em: ' + rideData.pickup);
+            }
+            // ✅ Abre mapa em tela cheia
+            setTimeout(function() { openFullScreenMap(); }, 800);
         } catch(e) {
-            playError();
-            alert('Erro ao aceitar: ' + e.message);
+            playError(); alert('Erro ao aceitar: ' + e.message);
             if (card) card.classList.remove('loading');
         }
     }
@@ -1989,12 +1991,8 @@
         document.getElementById('ridesList').style.display = 'none';
         document.getElementById('currentPassenger').style.display = 'block';
         const photoEl = document.getElementById('currentPassengerPhoto');
-        if (ride.passengerPhoto) {
-            photoEl.src = ride.passengerPhoto;
-            photoEl.style.display = 'block';
-        } else {
-            photoEl.style.display = 'none';
-        }
+        if (ride.passengerPhoto) { photoEl.src = ride.passengerPhoto; photoEl.style.display = 'block'; }
+        else { photoEl.style.display = 'none'; }
         document.getElementById('currentPassengerName').textContent = ride.passengerName || '-';
         document.getElementById('currentPassengerPhone').textContent = ride.passengerPhone || '-';
         document.getElementById('currentPickup').textContent = ride.pickup || '-';
@@ -2013,35 +2011,24 @@
     }
 
     function completeRide() {
-        if (!currentRide || currentRide.status !== 'accepted') {
-            playError();
-            alert('Nenhuma corrida ativa.');
-            return;
-        }
+        if (!currentRide || currentRide.status !== 'accepted') { playError(); alert('Nenhuma corrida ativa.'); return; }
         if (!confirm('Finalizar corrida de ' + currentRide.passengerName + '?')) return;
-        db.ref('rides/' + currentRide.id).update({
-            status: 'completed',
-            completedAt: Date.now()
-        })
+        db.ref('rides/' + currentRide.id).update({ status: 'completed', completedAt: Date.now() })
         .then(function() {
             playSuccess();
             showToast('Corrida finalizada!');
+            closeFullScreenMap();
             autoCompleteShown = false;
             currentRide = null;
             document.getElementById('currentPassenger').style.display = 'none';
             document.getElementById('distToDestDisplay').style.display = 'none';
-            if (routingControl) {
-                map.removeControl(routingControl);
-                routingControl = null;
-            }
+            if (routingControl) { map.removeControl(routingControl); routingControl = null; routeVisible = false; }
             loadRidesRealTime();
         })
-        .catch(function(e) {
-            playError();
-            alert('Erro ao finalizar: ' + e.message);
-        });
+        .catch(function(e) { playError(); alert('Erro ao finalizar: ' + e.message); });
     }
 
 </script>
 </body>
 </html>
+O
